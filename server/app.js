@@ -19,19 +19,20 @@ app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(__dirname + "/public"));
 
-// 메인페이지 가져오기
+// 페이지 가져오기
 const mainPage = require("../routes/index.js")
 const searchPage = require("../routes/search.js")
 const boardPage = require("../routes/board.js")
 const detail = require("../routes/detail.js")
 const lostBoardPage = require("../routes/lostBoard.js")
+const createBoard = require("../routes/create.js")
 // 메인페이지 연결
 app.use("/", mainPage)
-app.use("/board", boardPage)
+app.use("/board" , boardPage)
 app.use("/searchPage", searchPage)
 app.use("/", detail)
 app.use("/lostBoard", lostBoardPage)
-
+app.use("/create", createBoard)
 // 서버 실행
 app.listen(port, ()=>{
   console.log(`http://localhost:${port}`)

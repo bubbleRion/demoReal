@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
                 <a href="/"><img src="images/로고.png" alt="" class="img"></a>
               </div>
               <div class="name">
-                <div><a>실종 반려 동물 개시판</a></div>
+                <div><a href="/board">실종 반려 동물 개시판</a></div>
               </div>
               <div class="login">
                 <button class="signUp">회원가입</button>
@@ -60,7 +60,7 @@ router.get('/', (req, res) => {
             <sidebar id="sidebar">
             <div class="search">
             <form action="/searchPage" method="get">
-            <input type="search" name="result" class="inputSearch">
+            <input type="search" name="result" class="inputSearch" placeholder="실종 동물 검색">
                 <a>
                 <img src="images/검색.png" alt="">
                 </a>
@@ -68,12 +68,10 @@ router.get('/', (req, res) => {
           </div>
             </sidebar>
             <main>
-              <div id="menu">
-                <button class="leftbt">유기 동물 페이지</button>
-                <form action="http://localhost:8000/createboard" method="get">
-                  <button class="rightbt" formaction="http://localhost:8000/createboard">글 쓰 기</button>
-                </form>
-              </div>
+            <div id="menu">
+            <a href="/lostBoard" class="leftbt">유기 동물 페이지</a>
+            <a href="/create" class="rightbt">글 쓰 기</a>
+          </div>
               <div id="section">
                 ${searchResult2 === "" ? "<h1>검색결과가 없네요!</h1>" : searchResult2}
               </div>

@@ -5,15 +5,15 @@ const mysql = require("mysql")
 const db = mysql.createConnection(conn);
 
 
+
 router.get('/', (req, res) => {
   let result = "";
-  let realCount = 0;
+  
   db.query("select * from mainBoard4", (err, results)=>{
     if(err){
       console.error(err)
     }
     // realCount의 값을 바꿔준다. 게시물 번호 마지막의 +1
-    realCount = (results[results.length - 1].seq +1)
     result =  results.reverse().map((item, index)=>{
       
       return `<a href="/board${item.seq}"><div class="list"><div class="text">${item.seq} : ${item.head}</div></div></a>
@@ -50,7 +50,7 @@ res.send(`<!DOCTYPE html>
     <sidebar id="sidebar">
     <div class="search">
     <form action="/searchPage" method="get">
-      <input type="search" name="result" class="inputSearch">
+      <input type="search" name="result" class="inputSearch" placeholder="실종 동물 검색">
       <a>
         <img src="images/검색.png" alt="">
       </a>
@@ -59,10 +59,8 @@ res.send(`<!DOCTYPE html>
     </sidebar>
     <main>
       <div id="menu">
-        <button class="leftbt">유기 동물 페이지</button>
-        <form action="http://localhost:8000/createboard" method="get">
-          <button class="rightbt" formaction="http://localhost:8000/createboard">글 쓰 기</button>
-        </form>
+        <a href="/lostBoard" class="leftbt">유기 동물 페이지</a>
+        <a href="/create" class="rightbt">글 쓰 기</a>
       </div>
       <div id="section">
         ${result2}

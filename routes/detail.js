@@ -1,8 +1,8 @@
-const dongwookCon = require("../mysql/dongDatabase.js")
+const conn = require("../mysql/database.js")
 const express = require('express');
 const router = express.Router();
 const mysql = require("mysql")
-const db = mysql.createConnection(dongwookCon);
+const db = mysql.createConnection(conn);
 
 const detailTemp = require("./template/detailTemplate.js")
 router.get("/board:id", (req, res)=>{

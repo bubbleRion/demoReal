@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+​
+<body>
+  <h1>글 작성하기</h1>
+  <h1><a href="/" style="color: black; text-decoration: none; position: absolute; right: 0; top: 20px;">글 작성 취소</a></h1>
+  <form action="/create" method="post"
+    style="display: flex; justify-content : center; align-items: center; flex-direction: column;">
+    <input type="text" name="headText" placeholder="제목" style="width: 700px; height : 20px"><br>
+    <input type="text" name="mainTag" placeholder="태그" style="width: 700px; height : 20px"><br>
+    <textarea type="text" name="mainText" placeholder="본문" style="width: 700px; height : 600px;"></textarea><br>
+    <button type="submit" style="width: 140px; height: 60px; font-size: 24px;">작성하기</button>
+  </form>
+</body>
+​
+</html>

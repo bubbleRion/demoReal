@@ -3,12 +3,9 @@ const db =
     host : '127.0.0.1',
     port : "3306",
     user : 'root',
-    password : 'rjeek55%',
-    database : 'world'
+    password : 'kdt305',
+    database : 'projectc'
   }
-
-
-
 
 
 module.exports = db

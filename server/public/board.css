@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root{
   width: 1440px;
   height: 2843px;
@@ -102,15 +108,25 @@
   justify-content: end;
   align-items: center;
 }
-#root > main > #menu > .leftbt{
+.leftbt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 200px;
   height: 80px;
   background-color: #4F4F4F;
   border: 0;
   border-radius: 10px;
   margin-right: 30px;
+  color: #fff;
+  text-decoration: none;
 }
 .rightbt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
   width: 200px;
   height: 80px;
   background-color: #4F4F4F;
