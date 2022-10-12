@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     result =  results.reverse().map((item, index)=>{
       console.log(item.image.replace("s", "s/"))
       return `<a href="/board${item.seq}"><div class="list">
+      <div>게시물 번호${item.seq}</div>
       <img src="${item.image.replace("s", "s/")}" alt=""/>
       <div class="text">${item.findLocation} , ${item.age}</div>
       </div>
