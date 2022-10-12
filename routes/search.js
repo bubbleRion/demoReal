@@ -7,14 +7,18 @@ const db = mysql.createConnection(conn);
 let searchResultMain = []
 let searchPastLog = []
 router.get('/', (req, res) => {
-    db.query(`select * from mainBoard4 where main like "%${req.query.result}%" or head like "%${req.query.result}%" or tag like "%${req.query.result}%";`, (err, results)=>{
+    db.query(`select * from mainBoard7 where findLocation like "%${req.query.result}%" or breed like "%${req.query.result}%" or isMale like "%${req.query.result}%" or age like "%${req.query.result}%"  or isNeutering like "%${req.query.result}%" or currentLocation like "%${req.query.result}%" or isMale like "%${req.query.result}%" or uniqueness like "%${req.query.result}%";`, (err, results)=>{
         if(err){
           console.error(err)
         }
         if(req.query.result.length > 1){
         let searchResult = [];
           searchResult =  results.reverse().map((item, index)=>{
-            searchResultMain.push(`<a href="/board${item.seq}"><div class="list"><div class="text">${item.seq} : ${item.head}</div></div></a>
+            searchResultMain.push(`<a href="/board${item.seq}"><div class="list">
+            <img src="${item.image.replace("s", "s/")}" alt=""/>
+            <div class="text">${item.findLocation} , ${item.age}</div>
+            </div>
+            </a>
             `)
             
           })

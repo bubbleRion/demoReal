@@ -93,8 +93,8 @@
 #root > main > #img > div{
   width: 500px;
   height: 500px;
-  background-image: url(/images/dog.jpg);
-  background-size: cover;
+  /* background-image: url(/images/dog.jpg);
+  background-size: cover; */
 }
 
 #root > main > #txt{

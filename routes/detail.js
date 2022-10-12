@@ -6,7 +6,7 @@ const db = mysql.createConnection(conn);
 
 const detailTemp = require("./template/detailTemplate.js")
 router.get("/board:id", (req, res)=>{
-  db.query("select * from mainBoard4", (err, results)=>{
+  db.query("select * from mainBoard7", (err, results)=>{
     if(err){
       console.error(err)
     }
@@ -14,31 +14,34 @@ router.get("/board:id", (req, res)=>{
     current = req.params.id;
     let result2 = "";
       results.forEach((item, index)=>{
-        result2 = `<table>
+        console.log(item.image.replace("s" , "s/"))
+        result2 = `
+        <img src="${item.image === undefined ? "이미지 준비중" : item.image.replace("s" , "s/")}" style="width: 250px; height : 350px;"/>
+        <table>
         <thead>
           <tr>
-            <th class="topic">발견장소</th>
-            <th class="">${item.seq}</th>
+            <th class="topic">실종장소</th>
+            <th class="">${item.findLocation}</th>
             <th class="topic">견종</th>
-            <th>${item.head}</th>
+            <th>${item.breed}</th>
           </tr>
           <tr>
             <th class="topic">성별</th>
-            <th>여</th>
-            <th class="topic">나이</th>
+            <th>${item.isMale}</th>
+            <th class="topic">${item.age}</th>
             <th>6개월</th>
           </tr>
           <tr>
             <th class="topic">중성화 유무</th>
-            <th>${item.tag}</th>
+            <th>${item.isNeutering}</th>
             <th class="topic">현재 위치</th>
-            <th>대덕구 보호소</th>
+            <th>${item.currentLocation}</th>
           </tr>
           <tr>
             <td colspan="4" id="alpha">특이 사항</td>
           </tr>
           <tr>
-            <td colspan="4" id="beta">${item.main}</td>
+            <td colspan="4" id="beta">${item.uniqueness}</td>
           </tr>
         </thead>
       </table>`    

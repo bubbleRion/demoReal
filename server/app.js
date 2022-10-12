@@ -16,6 +16,7 @@ const port = process.env.PORT || 8080
 
 // express 바디파서 사용
 app.use(express.json())
+app.use("/uploads", express.static("uploads"))
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(__dirname + "/public"));
 

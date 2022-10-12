@@ -150,10 +150,16 @@
 #root > main > #section > a > .list{
   width: 250px;
   height: 350px;
-  background-image: url(/images/멍멍이.jpg);
+  /* background-image: url(/images/멍멍이.jpg); */
   display: flex;
   align-items: end;
 }
+#root > main > #section > a > .list> img{
+  width: 250px;
+  height: 350px;
+}
+
+
 #root >main > #section > a >.list > .text{
   width: 250px;
   height: 30px;

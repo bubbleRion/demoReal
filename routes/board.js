@@ -9,14 +9,18 @@ const db = mysql.createConnection(conn);
 router.get('/', (req, res) => {
   let result = "";
   
-  db.query("select * from mainBoard4", (err, results)=>{
+  db.query("select * from mainBoard7", (err, results)=>{
     if(err){
       console.error(err)
     }
     // realCount의 값을 바꿔준다. 게시물 번호 마지막의 +1
     result =  results.reverse().map((item, index)=>{
-      
-      return `<a href="/board${item.seq}"><div class="list"><div class="text">${item.seq} : ${item.head}</div></div></a>
+      console.log(item.image.replace("s", "s/"))
+      return `<a href="/board${item.seq}"><div class="list">
+      <img src="${item.image.replace("s", "s/")}" alt=""/>
+      <div class="text">${item.findLocation} , ${item.age}</div>
+      </div>
+      </a>
       `
     })
     let result2 = ""
