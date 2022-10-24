@@ -1,23 +1,32 @@
-
+// 모듇 express 가져오기
 const express = require('express');
+// express router 호출
 const router = express.Router();
+// node fetch 가져오기
 const fetch = require("node-fetch")
-
+// xmlToJson 가져오기
 const convert = require("xml-js")
-
+// 내 db정보 가져오기
 const conn = require("../mysql/database.js")
+// 모듈 mysql 가져오기
 const mysql = require("mysql")
+// db정보를 mysql에 넣어서 query 사용하게끔 처리
 const db = mysql.createConnection(conn);
-
+// api주소
 const URL = "http://apis.data.go.kr/6300000/animalDaejeonService/animalDaejeonList"
-
+// 깃허브에 올라가지 못하도록 처리한 나의 시리얼 키
 const EncodingKEY = require("../mysql/key.js")
 
-
+// 쿼리 파람스, api주소와 시리얼 키를 연결
 const queryParams = '?' + encodeURIComponent('serviceKey') + '=' + EncodingKEY;
 
+
+  // api 게시글 전체를 업데이트 하기위한 변수
+let pageCountNum = 1
+
 router.get('/', async (req, res) => {
-  const datas = await fetch(URL + queryParams + "&numOfRows=10&pageNo=1")
+  
+  const datas = await fetch(URL + queryParams + `&numOfRows=10&pageNo=${pageCountNum}`)
   const data = await datas.text()
   let result = convert.xml2json(data, {compact  :true, spaces  :4})
   const imageURL = "http://www.daejeon.go.kr/"
@@ -25,7 +34,8 @@ router.get('/', async (req, res) => {
   const filePaths = JSON.parse(result)
   const file = Object.values(filePaths)[1]
   let dbData = null
-  if(file.MsgBody !== undefined){
+  // api가 업데이트 중일 때에는 특이하게 undefined가 나올 때가 있다. 그때에는 동작하지 못하도록 처리
+  if(file !== undefined){
   dbData = file.MsgBody.items.map((values)=>{
     let adoption = values.adoptionStatusCd === undefined ? "" : values.adoptionStatusCd._text
     let age = values.age === undefined ? "" : values.age._text
@@ -55,40 +65,58 @@ router.get('/', async (req, res) => {
     return apiData
   })
 }
-  // console.log(dbData[0].animalSeq, dbData[4].animalSeq)
 
 
-  db.query(`select animalSeq , adoptionStatusCd from lostBoard`, (err, results)=>{
+  db.query(`select animalSeq , adoptionStatusCd , filePath from lostBoard`, (err, results)=>{
     results.sort((a,b)=>{
       return Number(b.animalSeq) - Number(a.animalSeq)
     })
+    
+  // api가 업데이트 중일 때에는 특이하게 null이 나올 때가 있다. 그때에는 동작하지 못하도록 처리
+  // 언디파인드와 null이 아닐때에만 데이터 생성, db에 추가하거나 업데이트
+    if(dbData !== undefined && dbData !== null){
+    
+      dbData.sort((a,b)=>{
+        return Number(b.animalSeq) - Number(a.animalSeq)
+      })
+      // dbData에서 새로운 seq번호가 나왔을 때 newData에 담는다.(add)
+      let newData = dbData.filter((item, index)=>{
+        return Number(item.animalSeq) > Number(results[0].animalSeq)
+      })
+      // db데이터에서 db와 다른 부분이 있을 때 adoptionData에 담는다. (update) 
+      let adoptionData = dbData.filter((item, index)=>{
+        return Number(item.adoption) !== Number(results[index + (pageCountNum -1) * 10].adoptionStatusCd)
+      })
+      // db데이터에서 db와 다른 부분이 있을 때 fileImageData에 담는다. (update) 
+      let fileImageData = dbData.filter((item, index)=>{
+        return item.filePath !== results[index + (pageCountNum -1) * 10].filePath
+      })
+      // 새로운 데이터 추가
+      if(newData[0] !== undefined){
+        console.log("데이터 추가")
+        overRiding(newData)
+      }
 
-    // console.log(results[0].animalSeq)
-    // console.log(results)
-    // console.log(dbData)
-    dbData.sort((a,b)=>{
-      return Number(b.animalSeq) - Number(a.animalSeq)
-    })
-    // console.log(dbData[0].animalSeq)
-    let newData = dbData.filter((item, index)=>{
-      return Number(item.animalSeq) > Number(results[0].animalSeq)
-    })
-    let adoptionData = dbData.filter((item, index)=>{
-      return Number(item.adoption) !== Number(results[index].adoptionStatusCd)
-    })
-    // 새로운 데이터 추가
-    if(newData[0] !== undefined){
-      console.log("데이터 추가")
-      overRiding(newData)
+      // api게시글 전체를 업데이트 하기 위한 처리 페이지가 리로드 될 때마다 pageCountNum을 1씩 증가 시킨다.  
+        pageCountNum++
+        // console.log(pageCountNum)
+        // pageCountNum은 1부터 시작하여 4로 끝난다. 4이상일 때 1로 초기화 해준다.
+        if(pageCountNum > 3){
+          pageCountNum = 1
+        }
+      // adoption의 유기현황 업데이트
+      if(adoptionData[0] !== undefined){
+        console.log("adoptionStatusCd update")
+        adoptionUpdate(adoptionData)
+      }
+      // filePath 이미지 경로 업데이트
+      if(fileImageData[0] !== undefined){
+        console.log("filePath 업데이트")
+        filePathUpdate(fileImageData)
+      }
     }
-    // adoption의 유기현환 업데이트
-    if(adoptionData[0] !== undefined){
-      console.log("adoptionStatusCd update")
-      adoptionUpdate(adoptionData)
-    }
-  
   })
-
+// 로스트 보드를 선택하고, 이미지 출력을 위하여.
   db.query(`select * from lostBoard`, (err, results)=>{
     if(err){
       console.error(err)
@@ -197,17 +225,26 @@ function overRiding(obj){
     })
   })
 }
-// adoption 업데이트 해주는 함수
+// adoption(유기현황) 업데이트 해주는 함수
 function adoptionUpdate(obj){
   obj.forEach((item)=>{
-    db.query(`update lostBoard set adoptionStatusCd =${item.adoption} where animalSeq=${item.animalSeq}` , (err, results)=>{
+    db.query(`update lostBoard set adoptionStatusCd ="${item.adoption}" where animalSeq=${item.animalSeq}` , (err, results)=>{
       if(err){
         console.error(err)
       }
     })
   })
 }
-
+// 사진경로 업데이트 해주는 함수
+function filePathUpdate(obj){
+  obj.forEach((item)=>{
+    db.query(`update lostBoard set filePath="${item.filePath}" where animalSeq=${item.animalSeq}` , (err, results)=>{
+      if(err){
+        console.error(err)
+      }
+    })
+  })
+}
 
 
 module.exports = router;

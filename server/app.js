@@ -3,13 +3,13 @@ const express =  require("express")
 // express 호출
 const app = express()
 // db정보 담긴 js와의 연결
-const conn = require("../mysql/database.js")
+// const conn = require("../mysql/database.js")
 // module mysql 연결
-const mysql = require("mysql")
+// const mysql = require("mysql")
 // mysql , db정보와의 연결
-const db = mysql.createConnection(conn)
+// const db = mysql.createConnection(conn)
 
-const {readFile} = require("fs")
+// const {readFile} = require("fs")
 // 포트번호 지정
 const port = process.env.PORT || 8080
 

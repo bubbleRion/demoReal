@@ -156,7 +156,7 @@ router.get("/", (req, res)=>{
 router.post("/", (req,res)=>{
     
     let body = req.body
-    db.query("select * from userTable2" , (err, results)=>{
+    db.query("select * from userTable3" , (err, results)=>{
         if(err){
             console.error(err)
         }

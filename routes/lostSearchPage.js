@@ -5,6 +5,7 @@ const conn = require("../mysql/database.js")
 const mysql = require("mysql")
 const db = mysql.createConnection(conn);
 
+const imageURL = "http://www.daejeon.go.kr/"
 
 router.get('/', async (req, res) => {
   

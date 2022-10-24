@@ -193,7 +193,7 @@ router.post("/", (req,res)=>{
         }
         results.forEach((items)=>{
             if(items.id == req.body.id && items.email == req.body.email){
-                db.query(`UPDATE userTable2 SET password = "${hashPassword}" WHERE id = "${req.body.id}"`)
+                db.query(`UPDATE userTable3 SET password = "${hashPassword}" WHERE id = "${req.body.id}"`)
 
                 main(req.body.email, randomPass)
             }

@@ -13,7 +13,7 @@ const db = mysql.createConnection(conn);
 
 let userID = ""
 router.get('/', (req, res) => {
-  let sql = `INSERT INTO mainboard10 (seq, location, breed, gender, age, isNeutering, name, uniqueness, image) VALUES (1, "봉명동", "포메", "암컷", "3살", "유", "깜순이", "이빨이 날카로워요", "이미지 준비중");`
+  // let sql = `INSERT INTO mainboard10 (seq, location, breed, gender, age, isNeutering, name, uniqueness, image) VALUES (1, "봉명동", "포메", "암컷", "3살", "유", "깜순이", "이빨이 날카로워요", "이미지 준비중");`
   let privateKey = req.headers.cookie
   if(privateKey !== undefined){
     let [session , cookie] = privateKey.split(";");

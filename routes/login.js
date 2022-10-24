@@ -39,9 +39,8 @@ router.post("/",(req,res)=>{
     let userID = ""
     db.query(`select password from userTable3 where id = "${id}"`, (err, results)=>{
         console.log(results)
-        if(results[0].length === 0){
+        if(results[0] == undefined){
             console.log("아이디 틀림")
-            res.redirect("/")
         }
         else if(id == "admin"){
             isAdmin = true
