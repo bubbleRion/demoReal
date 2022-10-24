@@ -1,0 +1,115 @@
+body{
+  width: 1440px;
+  height: 1024px;
+}
+#root{
+  width: inherit;
+  height: inherit;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* 전체 창 */
+#root>header{
+  width: inherit;
+  height: 100px;
+  background-color: #B9AEAE;
+
+  display: flex;
+  align-items: center;
+}
+/* 맨위에 박스 */
+#root>header>div{
+  margin-left: 21px;
+}
+#root>form>main{
+  width: 700px;
+  height: 924px;
+  background-color: rgb(224, 222, 222);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* 색깔이 티안나서 바꿈 */
+}
+/* 가운데 큰박스 
+가운에 안에있는 글씨랑 상자크기 조정*/
+#root>form>main>div:nth-child(1){
+  font-size: 36px;
+  margin-top: 37px;
+}
+/* 회원가입 박스 */
+#root>form>main>div:nth-child(2){
+  font-size: 20px;
+  margin-top: 71px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 225px;
+}
+/* 아이디박스 */
+#root>form>main>div:nth-child(4){
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 215px;
+}
+/* 비밀번호 박스 */
+#root>form>main>div:nth-child(6){
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 235px;
+}
+/* 이름박스 */
+#root>form>main>div:nth-child(8){
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 215px;
+}
+/* 전화번호 박스 */
+#root>form>main>div:nth-child(10){
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 235px;
+}
+#root>form>main>div:nth-child(12){
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  position: relative;
+  right: 235px;
+}
+/* 주소 박스 */
+#root>form>main>input{
+  width: 465px;
+  height: 40px;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+/* 데이터 입력 박스들 */
+#root>form>main>div:nth-child(14){
+ width: 243px;
+ height: 48px; 
+ background-color: rgba(79, 52, 52, 0.5);
+ border-radius: 100px;
+ border-width: 0px;
+ margin-top: 30px;
+ font-size: 24px;
+
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+/* 가입하기 버튼 박스 */
+#root>form>main>div:nth-child(12)>a{
+  text-decoration:none;
+  color: black;
+}

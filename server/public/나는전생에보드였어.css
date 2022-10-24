@@ -1,0 +1,200 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root{
+  width: 1440px;
+  height: 2843px;
+}
+#root > header{
+  width: 1440px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #B9AEAE;
+}
+#root > header > .logo{
+  width: 33%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+#root > header > .logo > a > .img{
+  width: 60px;
+  height: 60px;
+  margin: 15px;
+}
+#root > header > .name{
+  width: 33%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#root > header > .name > div{
+  font-size: 32px;
+  cursor: pointer;
+}
+
+
+#root > header > .login{
+  width: 33%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+#root > header > .login > .signUp{
+  width: 125px;
+  height: 44px;
+  background-color: #4F4F4F;
+  border: 0;
+  border-radius: 5px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+#root > header > .login > .signIn{
+  width: 125px;
+  height: 44px;
+  background-color: #4F4F4F;
+  border: 0;
+  border-radius: 5px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+#root > #sidebar{
+  width: 1440px;
+  height: 328px;
+}
+#root > #sidebar > div{
+  text-align: center;
+}
+#root > #sidebar > .search > form{
+  width: inherit;
+  height: inherit;
+}
+
+#root > #sidebar > .search > form >.inputSearch{
+  width: 1200px;
+  height: 70px;
+  border-radius: 20px;
+  font-size: 24px;
+}
+
+/* #root > #sidebar > .search > form >.btn{
+  width: 100px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #333;
+  color: #fff;
+} */
+
+#root > #sidebar > .search > form > a > img{
+  width: 60px;
+  height: 60px;
+  position: relative;
+  right: 80px;
+  top: 20px;
+}
+#root > main{
+  width: 100vw;
+  height: 2415px;
+}
+#root > main > #menu{
+  width: 1440px;
+  height: 181px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.leftbt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  background-color: #4F4F4F;
+  border: 0;
+  border-radius: 10px;
+  margin-right: 30px;
+  color: #fff;
+  text-decoration: none;
+}
+.rightbt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  width: 200px;
+  height: 80px;
+  background-color: #4F4F4F;
+  border: 0;
+  border-radius: 10px;
+}
+#root > main > #section{
+  width: 1440px;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  row-gap: 5rem;
+}
+
+#root > main > #section > a{
+  text-decoration: none;
+  color: #fff;
+}
+
+#root > main > #section > a > .list{
+  width: 250px;
+  height: 350px;
+  /* background-image: url(/images/멍멍이.jpg); */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#root > main > #section > a > .list> img{
+  width: 250px;
+  height: 320px;
+}
+
+#root > main > #section > a > .list > div{
+  font-size: 20px;
+  color: black;
+}
+
+
+#root >main > #section > a >.list > .text{
+  width: 250px;
+  height: 30px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  font-size: 16px;
+  color: black;
+}
+#root > main > .pagenation{
+  width: 1440px;
+  height: 67px;
+  background-color: #4F3434;
+  position: sticky;
+  bottom: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#root > main > .pagenation > p {
+  margin: 20px;
+  color: white;
+}

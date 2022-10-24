@@ -129,39 +129,12 @@
 }
 /* 유기동물 박스안에 텍스트 */
 #root>div:nth-child(4){
-  width: 130px;
-  height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  border-radius: 50px;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  position: absolute;
-  top: 70px;
-  left: 220px;
-}
-/* 글쓰기 박스 */
-#root>div:nth-child(4)>a{
-  font-family: 'Ibarra Real Nova';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 30px;
-
-  color: #000000;
-  text-decoration: none;
-}
-/* 글쓰기박스안에 텍스트 */
-#root>div:nth-child(5)>form{
   width: 550px;
   height: 50px;
   margin-bottom: 138px;
 }
 /* 검색창 박스 */
-#root>div:nth-child(5)>form>input{
+#root>div:nth-child(4)>form>input{
   width: 550px;
   height: 50px;
   
@@ -179,6 +152,11 @@
   flex-wrap: wrap;
 }
 /* 가운데 큰박스 */
+#root>main>div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 #root>main>a>img{
   width: 200px;
   height: 250px;
@@ -186,6 +164,7 @@
   margin-right: 60px;
   margin-bottom: 65px;
 }
+
 /* 가운데 10개박스 */
 #root>.left>img{
   width: 100px;

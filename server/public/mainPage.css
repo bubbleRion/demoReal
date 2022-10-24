@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body > #root {
+  width: 1920px;
+  height: 1080px;
+  background-image: url(/images/MainPage.png);
+}
+
+#root > header{
+  width: inherit;
+  height: 8vh;
+  background-color: rgba(210, 105, 30, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#root > header > .logo{
+  color: white;
+  font-size: 48px;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+#root > header > .sign{
+  display: flex;
+  flex-direction: row;
+}
+#root > header > .sign > a{
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+}
+#root > header > .sign > a > div{
+  width: 130px;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+#pageSector {
+  width: 270px;
+  height: 150px;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 595px;
+  right: 55px;
+}
+
+#mainImg{
+  width: 40px;
+  height: 40px;
+}
+
+#introduce{
+  width: 605px;
+  height: 230px;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 776px;
+  right: 50px;
+  color: white;
+  font-size: 24px;
+}
+
+#selectPage{
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  text-decoration: none;
+}
+
+#abandonment{
+  font-size: 32px;
+  color: white;
+  margin-left: 10px;
+}
+
+#missing{
+  font-size: 32px;
+  color: white;
+  margin-left: 10px;
+}

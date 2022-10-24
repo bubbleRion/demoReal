@@ -13,6 +13,7 @@ body{
 #root{
   width: 1440px;
   height: 1024px;
+  background-color: #4F343466;
 }
 
 #root > header{
@@ -21,7 +22,7 @@ body{
   align-items: center;
   width: inherit;
   height: 10%;
-  background-color: #4F343466;
+  background-color: #a79a9a;
 }
 
 #root > header > .logo{
@@ -64,14 +65,18 @@ body{
   align-items: center;
 }
 
-#root > header > .sign > div{
-  width: 100px;
-  height: 50px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
+#root > header > .sign > a{
+  width: 125px;
+  height: 44px;
+  background-color: #4F4F4F;
+  border: 0;
   border-radius: 5px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
 }
 
 #root > section{
@@ -80,6 +85,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #e5e1e1;
 }
 
 #root > section > .search > form{
@@ -88,7 +94,7 @@ body{
 }
 
 #root > section > .search > form >.inputSearch{
-  width: 1200px;
+  width: 1327px;
   height: 70px;
   border-radius: 20px;
   font-size: 24px;
@@ -103,8 +109,8 @@ body{
 } */
 
 #root > section > .search > form > a > img{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   position: relative;
   right: 80px;
   top: 20px;

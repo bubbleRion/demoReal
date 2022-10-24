@@ -1,0 +1,94 @@
+body{
+  width: 1440px;
+  height: 1024px;
+}
+#root{
+  width:inherit;
+  height:inherit;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* 전체 창 */
+#root>header{
+  width: inherit;
+  height: 100px;
+  background-color: #B9AEAE ;
+  margin-bottom: 112px;
+  
+  
+  display: flex;
+  align-items: center;
+}
+/* 맨위에박스 */
+#root>header>div{
+margin-left: 21px;
+}
+/* 맨위에 박스 안에있는 로고 */
+#root>main{
+  width:800px;
+  height:600px;
+}
+/* 가운에 박스들을 감싸는 박스 */
+#root>main>article{
+  width:800px;
+  height:100px;
+  background-color:rgba(79, 52, 52, 0.4); 
+  font-size: 36px;
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 로그인 박스 */
+#root>main>form>section{
+  width: 800px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* 아이디,비밀번호 아디,비번찾기, 로그인버튼 감싸는 박스 */
+#root>main>form>section>input:nth-child(1){
+  width: 600px;
+  height: 60px;
+  margin-bottom: 6px;
+  font-size: 24px;
+}
+/* 아이디박스 */
+#root>main>form>section>input:nth-child(2){
+  width: 600px;
+  height: 60px;
+  margin-bottom: 27px;
+  font-size: 24px;
+}
+/* 비밀번호 박스 */
+#root>main>form>section>a{
+  text-decoration:none;
+  color: black;
+  
+  position: relative;
+  right: 225px;
+}
+/* 아이디/비밀번호 찾기 버튼 */
+#root>main>form>section>div{
+  width: 400px;
+  height: 60px;
+  background-color:rgba(79, 52, 52, 0.5);
+  border-radius: 100px;
+  border-width: 0px;
+  margin-top: 46px;
+  font-size: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 로그인 버튼박스 */
+#root>main>form>section>div>a{
+  text-decoration:none;
+  color: black;
+}
+/* 로그인버튼 */

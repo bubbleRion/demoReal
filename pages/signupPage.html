@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./signupPage.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <!--? 각 모든 페이지가 공유하는 헤더 몇몇 필요없는 부분의 버튼을 제거하는것을 제외하고 값이 동일하다-->
+    <header>
+      <a href="/" class="logo">Way Home</a>
+      <div class="sign">
+          <a href="" class="sign-in"><div>로그인</div></a>
+      </div>
+  </header>
+    <main>
+      <!--? 글과 이미지가 출력되는 위치 main테그안에 위치한다-->
+      <section id="signupImgSector">
+        <img src="images/스핑크스.jpg" alt="" id="signupImg">
+      </section>
+      <!--? 정보 작성 공간 form태그로 input테그에서 작성된 정보를 전송 DB에 저장하는 역할을 진행한다 각 name은 DB에 저장된 데이터의 이름이고 placeholder을 통해 어떤 정보를 적고 어떤 데이터 안에 저장될지 알 수 있다.-->
+      <form action="/signup" method="post" id="signupTextSector">
+        <div id="signupText">
+          <input type="text" name="id" class="userInfo" placeholder="아이디는 영어여야 합니다" style="ime-mode: disabled;">
+          <input type="password" name="password" class="userInfo" placeholder="비밀번호">
+          <input type="text" name="name" class="userInfo" placeholder="이름">
+          <input type="text" name="phone" class="userInfo" placeholder="전화번호">
+          <input type="text" name="address" class="userInfo" placeholder="주소">
+          <input type="text" name="email" class="userInfo" placeholder="이메일">
+          <input type="submit" id="submit" value="회원 가입"></input>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

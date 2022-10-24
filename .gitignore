@@ -1,4 +1,12 @@
 /node_modules
+/mysql/database.js
+/mysql/naver.js
+/mysql/key.js
+
+/uploads
+/routes/Admin.js
+/routes/adminLogout.js
+
 
 package-lock.json
 package.json

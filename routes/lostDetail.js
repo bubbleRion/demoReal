@@ -4,8 +4,9 @@ const conn = require("../mysql/database.js")
 const mysql = require("mysql")
 const db = mysql.createConnection(conn);
 
+const imageURL = "http://www.daejeon.go.kr/"
 let userID = ""
-router.get("/board:id", (req, res)=>{
+router.get("/lostBoard:id", (req, res)=>{
   // 내가 만든 쿠키를 privateKey에 저장
   let privateKey = req.headers.cookie
   
@@ -34,33 +35,7 @@ router.get("/board:id", (req, res)=>{
 
   console.log(userID)
 
-  
-  db.query("select * from comment", (err, results)=>{
-      let comment =  results.map((item)=>{
-        let userComment = {
-          user : "",
-          comment : "",
-        }
-        if(item.seq == req.params.id){
-          userComment.user = item.user
-          userComment.comment = item.comment
-        }
-          return userComment
-      })
-      // console.log(comment)
-  
-      let commentText = comment.map((item)=>{
-        if(item.user !== "" || item.comment !== ""){
-          return `<div>${item.user === "" ? "익명" : item.user} : ${item.comment}</div>`
-        }
-        else{
-          return ""
-        }
-      }).join("")
-
-
-
-      db.query("select * from mainBoard10", (err, results)=>{
+      db.query("select * from lostBoard", (err, results)=>{
         let text = `<a href="/login" class="signIn">로그인</a>`
         let commentInput = ""
         let writeBox = ""
@@ -85,16 +60,37 @@ router.get("/board:id", (req, res)=>{
         
           results.forEach((item, index)=>{
             // console.log(item.image.replace("s" , "s/"))
-            result2 = `<div>이름 : ${item.name}</div>
-            <div>성별 : ${item.gender}</div>
+            let adoption = ""
+            if(item.adoptionStatusCd == "1"){
+                adoption = "공고중"
+            }
+            else if(item.adoptionStatusCd == "2"){
+                adoption = "입양가능"
+            }
+            else if(item.adoptionStatusCd == "3"){
+                adoption = "입양예정"
+            }
+            else if(item.adoptionStatusCd == "4"){
+                adoption = "입양완료"
+            }
+            else if(item.adoptionStatusCd == "7"){
+                adoption = "주인반환"
+            }
+            let gender = ""
+            if(item.gender == "1"){
+                gender = "암컷"
+            }
+            else{
+                gender = "수컷"
+            }
+            result2 = `<div>입양상태 : ${adoption}</div>
+            <div>성별 : ${gender}</div>
             <div>종 : ${item.breed}</div>
             <div>나이 : ${item.age}</div>
-            <div>중성화 유무 : ${item.isNeutering}</div>
-            <div>잃어버린 장소 : ${item.location}</div>
-            <div>특이사항 : ${item.uniqueness}</div>`    
-            
-            if(req.params.id == item.seq){
-              console.log(item.seq)
+            <div>발견장소 : ${item.foudPlace}</div>
+            <div>특이사항 : ${item.memo}</div>`    
+            let image = item.filePath === "" ? `<img src="/uploads/1666313512904.jpg" alt="이미지 없음"/>` : `<img src="${imageURL + item.filePath}" alt="이미지 없음"/>`
+            if(req.params.id == item.animalSeq){
             res.send(`<!DOCTYPE html>
             <html lang="en">
             
@@ -120,22 +116,10 @@ router.get("/board:id", (req, res)=>{
                 <main>
                   <section>
                     <div>
-                    <img src="${item.image.replace("s", "s/")}" alt=""/>
+                    ${image}
                     
                     </div>
                     <div>
-                      ${userID == item.userID ? `<div>
-                      <form action="/update" method="post">
-                      <input type="hidden" name="seq" value="${item.seq}">
-                      <input type="submit" value="글 수정" class="update">
-                      </form>
-                    </div>
-                    <div>
-                      <form action="/delete" method="post">
-                      <input type="hidden" name="seq" value="${item.seq}">
-                      <input type="submit" value="글 삭제" class="delete">
-                      </form>
-                    </div>` : ""}
                     </div>
                     <div>
                       <img src="images/right-arrow.png" alt="">
@@ -146,11 +130,7 @@ router.get("/board:id", (req, res)=>{
                   </section>
                   <article>
                     ${result2}
-                    <div class="scroll">
-                      <div class="comment">
-                          ${commentText}
-                      </div>
-                    </div>
+                    
                     ${commentInput}
                   </article>
                 </main>
@@ -159,10 +139,8 @@ router.get("/board:id", (req, res)=>{
             
             </html>`)
           }
-        })     
+          
       })
     })
-    
 })
-
 module.exports = router;

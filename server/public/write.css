@@ -1,0 +1,233 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root{
+  width: 1920px;
+  height: 1080px;
+  background: linear-gradient(270deg, rgba(255, 255, 240, 0) -1.09%, #FFDAB9 71.04%);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+#root > header{
+  width: inherit;
+  height: 70px;
+  background-color: rgba(210, 105, 30, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#root > header > .logo{
+  color: white;
+  font-size: 48px;
+  margin-left: 20px;
+}
+
+#root > header > .logo > a{
+  text-decoration: none;
+  color: #fff;
+}
+
+#root > header > .sign{
+  display: flex;
+  flex-direction: row;
+}
+#root > header > .sign > a{
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+}
+#root > header > .sign > a{
+  width: 130px;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+#root>main{
+  width: inherit;
+  height: inherit;
+
+  display: flex;
+  flex-direction: row;
+}
+/* 헤더를 제외한 큰박스 */
+#root>main>section{
+  width: 960px;
+  height: 92vh;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* 반으로 나눈 왼쪽 큰박스 */
+#root>main>section>div:nth-child(1){
+  width: 700px;
+  height: 800px;
+  background-color: gray;
+  border-radius: 20px;
+  margin-top: 70px;
+  margin-bottom: 34px;
+}
+/* 이미지 박스 */
+#root>main>section>div:nth-child(1)>img{
+  width: 700px;
+  height: 800px;
+  border-radius: 20px;
+ 
+}
+/* 이미지 */
+#root>main>section>div:nth-child(2){
+  width: 700px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+/* 글수정 글삭제 감싸는 박스*/
+#root>main>section>div:nth-child(2)>div:nth-child(1){
+  width: 130px;
+  height: 50px;
+  background: #FFFFFF;
+  border-radius: 50px;
+  margin-right: 80px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 글수정 박스 */
+#root>main>section>div:nth-child(2)>div:nth-child(1)>form>.update{  
+  font-family: 'Ibarra Real Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  border: 0;
+  outline: none;
+  background-color: #fff;
+  color: #000000;
+  text-decoration: none;
+}
+/* 글수정 텍스트 박스 */
+#root>main>section>div:nth-child(2)>div:nth-child(2){
+  width: 130px;
+  height: 50px;
+  background: #FFFFFF;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 글삭제 박스 */
+#root>main>section>div:nth-child(2)>div:nth-child(2)>form>.delete{  
+  font-family: 'Ibarra Real Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  border: 0;
+  outline: none;
+  background-color: #fff;
+  color: #000000;
+  text-decoration: none;
+}
+/* 글삭제 텍스트 */
+#root>main>section>div:nth-child(3)>img{
+  width: 54px;
+  height: 100px;
+
+  position: absolute;
+  top: 500px;
+  left: 850px;
+}
+/* 오른쪽 화살표 */
+#root>main>section>div:nth-child(4)>img{
+  width: 54px;
+  height:100px;
+  transform: rotate(180deg);
+
+  position: absolute;
+  top: 500px;
+  left: 50px;
+}
+/* 왼쪽 화살표 */
+#root>main>article{
+  width: 960px;
+  height: 1010px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* 오른쪽 큰박스 */
+#root>main>article>div{
+  width: 600px;
+  height: 50px;
+  margin-top: 30px;
+  border-bottom: 1px solid #000000;
+
+  font-family: 'Ibarra Real Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+
+  display: flex;
+  align-items: center;
+}
+/* input을 감싸는 박스들 */
+#root>main>article>div:nth-child(7){
+width: 600px;
+height: 125px;
+}
+/* 특이사항 박스 */
+#root>main>article>.scroll{
+  width: 600px;
+  height: 307px;
+  overflow-y:scroll;
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+/* 댓글 창 박스 */
+#root>main>article>.scroll>.comment{
+  width: 550px;
+  height: 30px;
+  font-family: 'Ibarra Real Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+}
+/* 댓글박스 */
+#root>main>article>.scroll>.comment>div{
+  background-color: rgba(204, 165, 137, 0.6);;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+
+#root>main>article>.wr{
+  width: 600px;
+  height: 82px;
+  font-size: 24px;
+}
+
+/* 댓글쓰기 박스 */
+#root>main>article>.wr input{
+  width: 600px;
+  height: 82px;
+
+  font-family: 'Ibarra Real Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+/* 댓글 쓰기 input */

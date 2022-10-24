@@ -7,21 +7,31 @@ const db = mysql.createConnection(conn);
 let searchResultMain = []
 let searchPastLog = []
 router.get('/', (req, res) => {
-    db.query(`select * from mainBoard7 where findLocation like "%${req.query.result}%" or breed like "%${req.query.result}%" or isMale like "%${req.query.result}%" or age like "%${req.query.result}%"  or isNeutering like "%${req.query.result}%" or currentLocation like "%${req.query.result}%" or isMale like "%${req.query.result}%" or uniqueness like "%${req.query.result}%";`, (err, results)=>{
+  let privateKey = req.headers.cookie
+     privateKey === undefined ? "" : req.headers.cookie.split("") 
+     let text = `<a href="/login" class="signIn">로그인</a>`
+     let writeText = `<a class="rightbt">로그인해</a>`
+     if(privateKey){
+        text = `<a href="/logout" class="signIn">로그아웃</a>`
+        writeText = `<a href="/create" class="rightbt">글 쓰 기</a>`
+      }
+     
+    db.query(`select * from mainBoard10 where location like "%${req.query.result}%" or breed like "%${req.query.result}%" or gender like "%${req.query.result}%" or age like "%${req.query.result}%"  or isNeutering like "%${req.query.result}%" or name like "%${req.query.result}%" or uniqueness like "%${req.query.result}%";`, (err, results)=>{
         if(err){
           console.error(err)
         }
         if(req.query.result.length > 1){
-        let searchResult = [];
-          searchResult =  results.reverse().map((item, index)=>{
-            searchResultMain.push(`<a href="/board${item.seq}"><div class="list">
-            <img src="${item.image.replace("s", "s/")}" alt=""/>
-            <div class="text">${item.findLocation} , ${item.age}</div>
-            </div>
-            </a>
-            `)
-            
+        let searchResult;
+        
+        console.log(results)
+          
+          searchResultMain = results.reverse().map((item, index)=>{
+            // console.log(item.image.replace("s", "s/"))
+            return `<a href="board${item.seq}"><img src="${item.image.replace("s", "s/")}" alt=""/><a>
+            `
           })
+            
+          
         }
         // 검색기능을 구현했지만 본문 검색을 구현하지 못했다.
         // 제목의 첫글자와 제목 내용이 완전일치하면 그 값을 반환해서 출력해주었다.
@@ -37,7 +47,6 @@ router.get('/', (req, res) => {
           searchResult2 += item
         })
     
-    
         res.send(`<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -45,54 +54,42 @@ router.get('/', (req, res) => {
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Document</title>
-          <link rel="stylesheet" href="/board.css">
         </head>
+        <link rel="stylesheet" href="board.css">
         <body>
           <div id="root">
             <header>
-              <div class="logo">
-                <a href="/"><img src="images/로고.png" alt="" class="img"></a>
+              <!-- 맨위에 긴박스 -->
+              <a href="/">Way Home</a>
+              <div>
+                ${text}
               </div>
-              <div class="name">
-                <div><a href="/board">실종 반려 동물 개시판</a></div>
-              </div>
-              <div class="login">
-                <button class="signUp">회원가입</button>
-                <button class="signIn">로그인</button>
+              <div>
+                <a href="">회원가입</a>
               </div>
             </header>
-            <sidebar id="sidebar">
-            <div class="search">
-            <form action="/searchPage" method="get">
-            <input type="search" name="result" class="inputSearch" placeholder="실종 동물 검색">
-                <a>
-                <img src="images/검색.png" alt="">
-                </a>
-            </form>
-          </div>
-            </sidebar>
+            <div>실종 동물 페이지</div>
+            <div>
+            <a href="/lostBoard">유기동물</a>
+            </div>
+            <div>
+            ${writeText}
+            </div>
+            <div>
+              <form action="/searchPage" method="get">
+                <input class="search-txt" type="text" name="result" placeholder="검색어를 입력해 주세요">
+              </form>
+            </div>
             <main>
-            <div id="menu">
-            <a href="/lostBoard" class="leftbt">유기 동물 페이지</a>
-            <a href="/create" class="rightbt">글 쓰 기</a>
-          </div>
-              <div id="section">
-                ${searchResult2 === "" ? "<h1>검색결과가 없네요!</h1>" : searchResult2}
-              </div>
-              <div class="pagenation">
-                <p><</p>
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>5</p>
-                <p>6</p>
-                <p>7</p>
-                <p>8</p>
-                <p>9</p>
-                <p>></p>
-              </div>
+            <!-- 가운데 10개 박스감싸는 박스 -->
+              ${searchResult2 === "" ? "<h1>검색결과 없네요!</h1>" : searchResult2}
             </main>
+            <div class="left">
+              <img src="../../public/board/화살표 (2).png" alt="">
+            </div>
+            <div class="right">
+              <img src="../../public/board/화살표 (2).png" alt="">
+            </div>
           </div>
         </body>
         </html>`)
