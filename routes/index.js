@@ -40,9 +40,9 @@ router.get('/', (req, res) => {
   }
 }
 
-  console.log(userID)
-
-
+  // console.log(userID)
+    
+    // 회원으로 로그인 했을 때는 로그아웃 표시가 되고, 로그인 안했을 때는 로그인으로 표시
      let text = `<a href="/login" class="signIn"><div>로그인</div></a>`
      if(privateKey){
       text = `<a href="/logout" class="signIn"><div>로그아웃</div></a>`

@@ -118,7 +118,7 @@ res.send(`<!DOCTYPE html>
         ${text}
       </div>
       <div>
-        <a href="">회원가입</a>
+        <a href="/signup">회원가입</a>
       </div>
     </header>
     <div>유기 동물 페이지</div>

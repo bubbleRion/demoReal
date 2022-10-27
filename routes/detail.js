@@ -8,8 +8,7 @@ let userID = ""
 router.get("/board:id", (req, res)=>{
   // 내가 만든 쿠키를 privateKey에 저장
   let privateKey = req.headers.cookie
-  
-  if(privateKey !== undefined){
+  if(privateKey !== undefined && privateKey !== null){
     let [session , cookie] = privateKey.split(";");
   // cookie가 1시간이 지나면 사라지므로 undefined가 나올 수 있다. 그 때는 아이디정보가 사라지게 하기 위해 조건을 달음
   if(cookie !== undefined){

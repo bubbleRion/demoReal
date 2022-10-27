@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   let privateKey = req.headers.cookie
      privateKey === undefined ? "" : req.headers.cookie.split("") 
      let text = `<a href="/login" class="signIn">로그인</a>`
-     let writeText = `<a class="rightbt">로그인해</a>`
+     let writeText = `<a class="rightbt">로그인필요</a>`
      if(privateKey){
         text = `<a href="/logout" class="signIn">로그아웃</a>`
         writeText = `<a href="/create" class="rightbt">글 쓰 기</a>`
@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
                 ${text}
               </div>
               <div>
-                <a href="">회원가입</a>
+                <a href="/signup">회원가입</a>
               </div>
             </header>
             <div>실종 동물 페이지</div>

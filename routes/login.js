@@ -84,7 +84,9 @@ router.post("/",(req,res)=>{
         if(isLogin){
             console.log("로그인 성공")
             console.log(req.session)
+            req.session.user = userID
             req.session.save()
+            req.session.touch({maxAge : 30 * 60 * 1000})
             if(req.session){
                 
                 sessionData[req.sessionID] = {id, password}

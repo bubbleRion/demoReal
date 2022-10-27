@@ -2,33 +2,26 @@
 const express =  require("express")
 // express 호출
 const app = express()
-// db정보 담긴 js와의 연결
-// const conn = require("../mysql/database.js")
-// module mysql 연결
-// const mysql = require("mysql")
-// mysql , db정보와의 연결
-// const db = mysql.createConnection(conn)
-
-// const {readFile} = require("fs")
 // 포트번호 지정
 const port = process.env.PORT || 8080
-
+// 쿠키파서 연결
 const cookieParser = require("cookie-parser")
-
+// 세션 연결
 const session = require('express-session')
-
+// 세션의 메모리스토어 연결
 const {MemoryStore} = require('express-session');
-
 
 // express 바디파서 사용
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
+
 // 이미지 경로 업로드로 지정
 app.use("/uploads", express.static("uploads"))
 // public경로 지정
 app.use(express.static(__dirname + "/public"));
-
+// 쿠키파서 사용
 app.use(cookieParser('strong'))
+// 세션 사용
 app.use(session({
 resave:false,
 saveUninitialized:false,
@@ -38,9 +31,7 @@ saveUninitialized:false,
     secure:false,
     httpOnly:true,
   }
-
 }))
-
 
 
 // 페이지 가져오기

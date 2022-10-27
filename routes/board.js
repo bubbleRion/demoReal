@@ -8,9 +8,13 @@ const db = mysql.createConnection(conn);
 let userID = "";
 
 router.get('/', (req, res) => {
+  console.log(req.session.user)
+  
+  
+
   // 내가 만든 쿠키를 privateKey에 저장
   let privateKey = req.headers.cookie
-  console.log(privateKey)
+  // console.log(privateKey)
   if(privateKey !== undefined){
     let [session , cookie] = privateKey.split(";");
   // cookie가 1시간이 지나면 사라지므로 undefined가 나올 수 있다. 그 때는 아이디정보가 사라지게 하기 위해 조건을 달음
@@ -34,9 +38,9 @@ router.get('/', (req, res) => {
   }
 }
 
-  console.log(userID)
+  // console.log(userID)
      let text = `<a href="/login" class="signIn">로그인</a>`
-     let writeText = `<a class="rightbt">로그인해</a>`
+     let writeText = `<a class="rightbt">로그인필요</a>`
     //  privateKey가 있을 때만 글쓰기 버튼 나오게 함. 추가적으로 글쓰기 페이지에서도 조건 처리를 해줘야 한다.
      if(privateKey){
         text = `<a href="/logout" class="signIn">로그아웃</a>`
@@ -64,7 +68,6 @@ router.get('/', (req, res) => {
       isLogin = true
     }
 
-    
     // console.log(isLogin)
 // 보내준다. 데이터를 담은 html
 res.send(`<!DOCTYPE html>
@@ -85,7 +88,7 @@ res.send(`<!DOCTYPE html>
         ${text}
       </div>
       <div>
-        <a href="">회원가입</a>
+        <a href="signup">회원가입</a>
       </div>
     </header>
     <div>실종 동물 페이지</div>
