@@ -57,30 +57,7 @@ router.post("/",(req,res)=>{
                 isAdmin = false
             }
         }
-        // results.forEach((items)=>{
-        //     // Admin, ghfjdhdl 는 Process.admin으로 교체 예정
-        //     console.log(body.id)
-        //     console.log(items.id)
-        //     console.log(items.password)
-
-        //     if(hashPassword == "RB36vQEmoz5Gd9dtc+TjQMWAXv31j+hL9KH3gV5nbw4Vm+dLLea+0X0f92b/HUkVygTLeBwMXQReHRSIbrHzHA==" && body.id == "admin"){
-        //         isAdmin = true
-        //     }
-
-
-        //     if(body.id == items.id && hashPassword == items.password){
-        //         isLogin = true
-        //         userID = items.id
-        //     }
-        //     else{
-        //         isLogin = false
-        //         isAdmin = false
-        //     }
-        // })
-
-        
-
-        
+               
         if(isLogin){
             console.log("로그인 성공")
             console.log(req.session)
