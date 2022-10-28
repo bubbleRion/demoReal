@@ -1,8 +1,9 @@
-
 const express = require('express');
 const router = express.Router();
 
-
+const conn = require("../mysql/database.js")
+const mysql = require("mysql")
+const db = mysql.createConnection(conn);
 
 router.get("/", (req, res)=>{
     res.send(`<!DOCTYPE html>
